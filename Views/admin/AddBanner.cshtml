@@ -1,0 +1,63 @@
+﻿
+<head>
+    <title>Car Show Room</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+
+
+    <script>
+
+        $("#file-1").fileinput({
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any"
+        });
+
+
+    </script>
+</head>
+
+
+
+<body>
+
+    <legend><h1>Upload Banner</h1></legend> 
+    <div class="col-lg-offset-5 ">
+        <div id="content">
+            <div class="content_item">
+                <div class="container text-danger">
+
+                    <h1>Only Add file Named "Banner.jpg"</h1>
+                    <form enctype="multipart/form-data" method="post" action="/admin/banner">
+                        <div class="form-group">
+                            <input id="file-1" name="file1" type="file" class="file" data-preview-file-type="any" multiple accept='image/*'>
+                        </div>
+                        <br /><br /> 
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn btn-default">Cancel</button>
+
+                        </div>
+
+                    </form>
+                </div>
+               
+                <br />
+
+               
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+

@@ -1,0 +1,68 @@
+﻿
+<head>
+    <title>Car Show Room</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+            var ID = 1;
+            var Count = 0;
+            $('#tb').empty();
+            $.getJSON('/admin/getBookings', function (data) {
+
+                $.each(data, function (i, item) {
+
+                    ID = item.Id;
+                    Count = Count + 1;
+
+                });
+
+                $('#tb').append('<tr><td>' + 1 + '</td><td>' + ID + '</td><td>' + Count + '</td><td>' + (ID-Count) + '</td></tr>');
+            });
+      });
+    </script>
+</head>
+
+
+
+<body>
+   
+           
+   
+    <legend>Monthly Report</legend>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Total Bookings</th>
+                <th>Confirmed Booking</th>
+                <th>Cancelled Bookings</th>
+                
+            </tr>
+        </thead>
+        <tbody id="tb">
+           
+            
+            <tr class="danger">
+                <td>1</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+            </tr>
+            
+        </tbody>
+    </table> 
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

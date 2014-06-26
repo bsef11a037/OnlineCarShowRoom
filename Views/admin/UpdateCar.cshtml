@@ -1,0 +1,203 @@
+﻿
+@model Ead_Project.Models.car
+<head>
+    <title>Car Show Room</title>
+
+    <script>
+       
+
+        $(document).ready(function () {
+
+            $('#close').click(function () {
+                $("#myModal").hide();
+               
+            });
+            
+            $('#make').change(function () {
+               
+                var id = $('#make').val();
+                
+                $('#model').empty();
+                $.getJSON("/admin/GetModel?u=" + id, function (data) {
+
+                    $.each(data, function (i, item) {
+
+                        $('#model').append('<option value=' + item.modelName + '>' + item.modelName + '</optoin>');
+                    });
+                });
+            });
+
+            $('#search1').click(function () {
+               
+                var make = $('#make').val();
+                var model = $('#model').val();
+                var year = $('#year').val();
+                var price = $('#price').val();
+                var power = $('#power').val();
+
+                $.getJSON("/user/SearchACar?make=" + make + "&model=" + model + "&price=" + price + "&power=" + power + "&year=" + year, function (data) {
+
+
+                    $('#searched').empty();
+                    $.each(data, function (i, item) {
+
+
+                        $('#searched').append('<div class="thumbnail">' + '<img src=/images/' + item.image + ' /> </div>');
+                        $('#searched').append('<div class="caption text-primary"><h3>Model:' + item.model + '  ' + item.year + '</h3>');
+                        $('#searched').append('<h3>Price:' + item.price + '</h3> ');
+                        $('#searched').append('<p><input type="button" class="btn-primary"  value="Edit" onClick=f1(' + item.Id + ') id=' + item.Id + '></p>');
+
+                    });
+                });
+            });
+            
+           
+
+        });
+       
+        function f1(id) {
+            $('#searched').empty();
+            
+            $.getJSON("/user/getACar?cid=" + id, function (data) {
+
+                
+               
+                $('#searched').append('<br/>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<div class="input-group">' + '<span class="input-group-addon">Make</span>' + '<input type="text" class="form-control" id="Nmake" value=' + data.make + '>' + '</div>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<div class="input-group">' + '<span class="input-group-addon">Model</span>' + '<input type="text" class="form-control" id="Nmodel" value=' + data.model + '>' + '</div>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<div class="input-group">' + '<span class="input-group-addon">Power</span>' + '<input type="text" class="form-control" id="Npower" value=' + data.power + '>' + '</div>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<div class="input-group">' + '<span class="input-group-addon">Price</span>' + '<input type="text" class="form-control" id="Nprice"  value=' + data.price + '>' + '</div>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<div class="input-group">' + '<span class="input-group-addon">Year</span>' + '<input type="text" class="form-control" id="Nyear" value=' + data.year + '>' + '</div>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<br/>');
+                $('#searched').append('<p><input type="button" class="btn-primary form-control" value="Update" onClick=f2(' + data.Id + ') id=' + data.Id + '></p>');
+                $('#searched').append();
+
+               
+            });
+           
+        }
+        
+        function f2(id) {
+
+            var make = $('#Nmake').val();
+            var model = $('#Nmodel').val();
+            var year = $('#Nyear').val();
+            var price = $('#Nprice').val();
+            var power = $('#Npower').val();
+            
+            $.getJSON("/admin/SaveUpdate?make=" + make + "&model=" + model + "&price=" + price + "&power=" + power + "&year=" + year + "&id=" + id, function (data) {
+                window.location.href = window.location.href;
+                alert("Updated");
+            });
+        }
+    </script>
+    <style type="text/css">
+        .bs-example {
+            margin: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+
+    <div class="row">
+        <form class="form-group col-lg-3">
+            <fieldset>
+                <legend>Select Car</legend>
+                <div class="form-group">
+                    <label for="select" class="col-lg-2 control-label text-primary">Make</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="make">
+                            <option>Select Make...</option>
+                            <option value=1>Honda</option>
+                            <option value=2>Toyota</option>
+                            <option value=3>Audi</option>
+                            <option value=4>Suzuki</option>
+                            <option value=5>BMW</option>
+                        </select>
+                    </div>
+                    <br /><br /><br />
+                    <label for="select" class="col-lg-2 control-label">Model</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="model">
+                            <option>Select Model...</option>
+
+                        </select>
+                    </div>
+                    <br /><br /><br />
+                    <label for="select" class="col-lg-2 control-label text-danger">Price</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="price">
+                            <option>500000</option>
+                            <option>500000-1000000</option>
+                            <option>1000000-2000000</option>
+                           
+                            <option>2000000-5000000</option>
+                            <option>>5000000</option>
+                        </select>
+                    </div>
+
+                    <br /><br /><br />
+                    <label for="select" class="col-lg-2 control-label">Model Year</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="year">
+                                                   
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+
+                        </select>
+                    </div>
+                    <br /><br /><br />
+                    <label for="select" class="col-lg-2 control-label text-primary">Power</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="power">
+
+                            <option>less than 1300</option>
+                            <option>less then 2000</option>
+                            <option>greater than 2000</option>
+
+                        </select>
+                    </div>
+                    <br/><br/><br />
+                    <div class="btn-group col-lg-offset-6 bg-primary">
+                        <button type="button" class="btn btn-default" id="search1" >Next</button>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </fieldset>
+        </form>
+
+        <div class="col-lg-3" id="searched">
+           
+        </div>
+
+
+    </div>
+
+  
+   
+
+
+
+
+</body>
+

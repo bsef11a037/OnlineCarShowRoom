@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Car Show room</title>
+    <script>
+ $(document).ready(function () {
+
+          
+     
+     $.getJSON("/user/getBookings", function (data) {
+
+                   
+         $('#searched').empty();
+         $('#searched').append('<tr>');
+                    $.each(data, function (i, item) {
+
+                       
+                        $('#searched').append('<td>');
+                        $('#searched').append('<div class="thumbnail">'+'<img src=/images/'+item.image+' /> </div>');
+                        $('#searched').append('<div class="caption text-primary"><h3>Model:' + item.model+ '  ' + item.year +'</h3>');
+                        $('#searched').append('<h3>Price:' + item.price + '</h3> ');
+                        $('#searched').append('<h3>Power:' + item.power + 'CC</h3> </div>');
+                        $('#searched').append('<p><input type="button" class="btn-primary"  value="Cancel IT" onClick=f1(' + item.Id + ') id="cancel" ></p>');
+                        $('#searched').append('</td>');
+                        
+                    });
+                    $('#searched').append('</tr>');
+             });
+           
+    });
+ function f1(id) {
+
+
+     $.getJSON("/user/CancelBookCar?cid=" + id, function (data) {
+
+
+         window.location.href = window.location.href;
+
+     });
+ }
+    </script>
+</head>
+
+
+    <body>
+
+
+
+      
+           
+
+
+        <table class="table-bordered" id="searched">
+
+        </table>
+       
+
+
+
+    </body>
+

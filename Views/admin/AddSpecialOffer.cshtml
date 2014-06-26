@@ -1,0 +1,72 @@
+﻿
+<head>
+    <title>Car Show Room</title>
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+
+            $("#b1").click(function () {
+
+                var u = $("#txt").val();
+
+                if (u != "") {
+                   
+                    $.getJSON('/admin/saveOffer?u=' + $("#txt").val(), function (x) {
+
+                        alert("Message Sent");
+
+                    });
+                }
+                else
+                    alert("Enter Data First");
+            });
+
+        });
+
+
+    </script>
+</head>
+<body>
+
+
+
+
+    <div class="col-lg-offset-1 ">
+        <div id="content">
+            <div class="content_item">
+                <div class="container">
+
+                    <h1>Message Us</h1>
+                    <form enctype="multipart/form-data">
+
+                        <textarea class="form-control" rows="3" id="txt"></textarea>
+
+
+                        <br /><br /><br />
+                        <div class="btn-group col-lg-offset-1">
+                            <button type="button" class="btn btn-success" id="b1">Send</button>
+                            <button type="reset" class="btn btn-default">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <br />
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+

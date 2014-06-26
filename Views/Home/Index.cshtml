@@ -1,0 +1,240 @@
+﻿@{
+    Layout=null;
+}
+
+@model Ead_Project.Models.user
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+     <title>Car Show Room</title>
+   
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+   
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+            $("#b1").click(function () {
+
+                var u = $("#name").val();
+              
+                if (u != "") {
+                  
+                    $.getJSON('/Home/GetStatus?u=' +$("#name").val(), function (x) {
+                       
+                        if (x) {
+                            $('#d1').text(" Available");
+                        }
+
+                        else {
+                            $('#d1').text(" Not Available");
+                        }
+
+                    });
+                }
+                else
+                    alert("Enter Data First");
+            });
+
+        });
+ 
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="navbar nav-divider navbar-inverse">
+        <div  class="col-lg-6 text-primary">
+
+            <h3>Welcome To Online Car Show Room</h3>
+
+
+
+
+        </div>
+    </div>
+            
+                @*<form action="Home/verify" method="post">*@
+                @using(Html.BeginForm("verify","Home",FormMethod.Post)){
+                   @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true)
+                    <div id="content">
+                        <div class="content_item text-primary col-lg-offset-3">
+                            <h1>Login</h1>
+                         
+                            <br />
+                            <div class="col-lg-6">
+                                <div class="input-group editor-field">
+                                    <span class="input-group-addon">User Name</span>
+                                    
+
+                                     @Html.TextBoxFor(x => x.Name, new { placeholder = "Username", @class="form-control"})
+                                    @Html.ValidationMessageFor(x => x.Name)
+                                   
+                                    @*<input type="text" class="form-control" placeholder="Username" id="name" name="name" />*@
+                                   
+                                </div>
+                                <br />
+                                <div class="input-group editor-field">
+
+                                    <span class="input-group-addon">Password</span>
+                                    @Html.PasswordFor(x=> x.password, new { placeholder = "Password", @class = "form-control"})
+                                    @Html.ValidationMessageFor(x => x.password)
+
+                                    @*<input type="text" class="form-control" placeholder="Password" id="pass" name="pass"/>*@
+                                </div>
+                                <br />
+
+
+                                <br />
+
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-success" id="login">Login</button>
+                                    <button type="reset" class="btn btn-default">Cancel</button>
+                                    
+                                </div>
+
+                            </div>
+
+
+
+                        </div><!--close content-->
+
+
+                    </div><!--close main-->
+                }
+               @* </form>*@
+
+           
+
+        
+    
+   
+    <div class="col-lg-offset-7">
+
+
+        <div id="content">
+            <div class="content_item text-success">
+                <h1>SignUp</h1>
+                <div class=" text-info">
+                    <h5>Not Have An Account? SignUp Here </h5>
+                </div>
+                <br />
+                @*<form method="post" action="Home/save">*@
+               @using(Html.BeginForm("save","Home",FormMethod.Post))
+               {
+                    
+                    @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true)
+                   
+                    <div class="col-lg-7">
+                        <div class="input-group">
+                            <span class="input-group-addon">User Name</span>
+                            @*@Html.TextBoxFor(model => model.Name, new { placeholder = "Username", @class = "form-control" })*@
+                            <input type="text" class="form-control" placeholder="Username" id="name" name="name" required/>
+                          
+
+                            <input type="button" class="form-control" value="Check Availability" id="b1" />
+                            <div id="d1" class="text-primary ">
+                                
+                              </div>
+
+                            </div>
+                        <br />
+                        <div class="input-group">
+
+                            <span class="input-group-addon">Password</span>
+                            @*@Html.TextBoxFor(model => model.password, new { placeholder = "Password", @class = "form-control" })*@
+                            <input type="text" class="form-control" placeholder="Password" id="pass" name="pass" required/>
+
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">Country</span>
+                            @Html.TextBoxFor(model => model.country, new { placeholder = "Country", @class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.country)
+
+                            @*<input type="text" class="form-control" placeholder="Country" name="coun" />*@
+
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">City</span>
+                            @Html.TextBoxFor(model => model.city, new { placeholder = "City", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.city)
+
+                            @*<input type="text" class="form-control" placeholder="City" name="city" />*@
+
+                       </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">Contact No</span>
+                            @Html.TextBoxFor(model => model.phone, new { placeholder = "Contact No", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.phone)
+                           @* <input type="text" class="form-control" placeholder="Contact No" name="contact" />*@
+
+                      </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">Email</span>
+                            @Html.TextBoxFor(model => model.email, new { placeholder = "Email", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.email)
+                            @*<input type="text" class="form-control" placeholder="Email" name="email" />*@
+
+                       </div>
+                        <br />
+
+
+
+                        <br />
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn btn-default">Cancel</button>
+
+                        </div>
+
+                    </div>
+                   
+
+    }
+                
+
+      
+
+
+
+            </div><!--close content-->
+
+
+        </div><!--close main-->
+
+        </div>
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+</body>
+

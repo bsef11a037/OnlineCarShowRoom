@@ -1,0 +1,34 @@
+﻿
+@model List<Ead_Project.Models.message>
+<body>
+  
+           
+
+
+    <legend>Suggestions</legend>
+
+    <table class="table table-bordered table-striped table-hover ">
+        <tr>
+            <td>
+                User ID
+            </td>
+            <td>
+                Message/Suggestion
+            </td>
+        </tr>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.userID</td>
+                <td>@s.msg</td>
+            </tr>
+        }
+
+
+    </table>
+
+
+
+
+</body>
+

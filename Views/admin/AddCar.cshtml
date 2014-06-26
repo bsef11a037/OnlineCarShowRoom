@@ -1,0 +1,126 @@
+﻿
+
+@model Ead_Project.Models.car
+
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <title>Car Show Room</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+
+
+    <script>
+       
+        $("#file-1").fileinput({
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any",
+            required: true,
+           
+        });
+       
+        
+    </script>
+</head>
+
+<body>
+   
+   
+    <div id="site_content">
+
+
+        <div id="content">
+            <div class="content_item">
+                <legend><h1>Add Car Details</h1></legend> 
+
+                <br />
+                <form action="/admin/addCar" method="post" enctype="multipart/form-data" >
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="col-lg-7">
+                        <div class="input-group">
+                            <span class="input-group-addon">Make</span>
+                            @Html.TextBoxFor(x => x.make, new { placeholder = "Make", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.make)
+                            @*<input type="text" class="form-control" placeholder="make" />*@
+                        </div>
+                        <br />
+                        <div class="input-group">
+
+                            <span class="input-group-addon">Model</span>
+                            @Html.TextBoxFor(x => x.model, new { placeholder = "Model", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.model)
+                            @*<input type="text" class="form-control" placeholder="Model" />*@
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">Price</span>
+                            @Html.TextBoxFor(x => x.price, new { placeholder = "Price", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.price)
+                            @*<input type="text" class="form-control" placeholder="Price" />*@
+
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">Model Year</span>
+                            @Html.TextBoxFor(x => x.year, new { placeholder = "Model Year", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.year)
+                           @* <input type="text" class="form-control glyphicon-calendar" placeholder="Model Year" />*@
+
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon">Power(CC)</span>
+                            @Html.TextBoxFor(x => x.power, new { placeholder = "CC", @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.power)
+                           @* <input type="text" class="form-control" placeholder="CC" />*@
+
+                        </div>
+                        <div class="container">
+                            <h1>Upload Pic</h1>
+                           
+                                <div class="form-group">
+                                    <input id="file-1" name="file1" type="file" class="file" data-preview-file-type="image" multiple accept='image/*'>
+                                </div>
+                          
+                           
+                        </div>
+
+                        <br />
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn btn-default">Cancel</button>
+
+                        </div>
+
+                    </div>
+
+              
+                </form>
+                
+            </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+

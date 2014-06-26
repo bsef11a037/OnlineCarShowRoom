@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>Car Show Room</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easing.min.js"></script>
+   
+</head>
+<body>
+    <div id="main">
+        <div id="welcome">
+            <h3><a href="#">Online Car Show Room</a></h3>
+        </div><!--close welcome-->
+        
+        <div id="menubar">
+
+        </div>
+
+
+        <div class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <div id="menu_items">
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Home","Index","user")</li>
+                        <li>@Html.ActionLink("Booking Details", "BookingDetails", "user")</li>
+                        @*<li>@Html.ActionLink("Cancel Booking", "CancelBooking", "user")</li>*@
+                        @*<li>@Html.ActionLink("Special Offers", "specialOffer", "user")</li>*@
+                        <li>@Html.ActionLink("Search", "SearchCar", "user")</li>
+                        <li>@Html.ActionLink("Contact US", "contact", "user")</li>
+                        <div class="col-lg-offset-12">
+
+                            <li>@Html.ActionLink("SignOut", "Index", "Home")</li>
+
+                        </div>
+                        @*<a href="Index">Home</a></li>*@
+                        @*<li><a href="BookingDetails">Booking Details</a></li>
+                        <li><a href="CancelBooking">Cancel Booking</a></li>
+                        <li><a href="specialOffer"> Special Offers</a></li>
+                        <li><a href="contact">Contact Us</a></li>*@
+
+                    </ul>
+                </div><!--close menu-->
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

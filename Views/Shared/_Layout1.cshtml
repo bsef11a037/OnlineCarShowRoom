@@ -1,0 +1,78 @@
+﻿
+
+<html>
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easing.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>Car Show Room</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+
+</head>
+<body>
+    <div id="main">
+        <div id="welcome">
+            <h3><a href="#">Online Car Show Room</a></h3>
+            
+        </div><!--close welcome-->
+        <div class="col-lg-offset-10">
+            <li>@Html.ActionLink("SignOut", "Index", "Home")</li>
+
+        </div>
+     </div>
+   
+    <div>
+        <br /><br /><br /><br /><br />
+        <ul class="nav nav-pills">
+
+
+
+
+            <li>@Html.ActionLink("Add New Car", "AddCar", "admin")</li>
+            <li>@Html.ActionLink("Update Car", "UpdateCar", "admin")</li>
+            <li>@Html.ActionLink("Delete Car", "DeleteCar", "admin")</li>
+            <li>@Html.ActionLink("View Bookings", "ViewBooking", "admin")</li>
+            <li>@Html.ActionLink("View Monthly Report", "ViewMonthly", "admin")</li>
+            <li>@Html.ActionLink("View Key Customers", "ViewKeyCustomers", "admin")</li>
+            <li>@Html.ActionLink("Add Special Offer", "AddSpecialOffer", "admin")</li>
+            <li>@Html.ActionLink("View Suggestions", "ViewSuggestion", "admin")</li>
+            <li>@Html.ActionLink("Add Banner", "AddBanner", "admin")</li>
+           
+
+            @*<li> <a href="AddCar">Add New Car</a></li>
+            <li><a href="UpdateCar">Update Car</a></li>
+
+            <li><a href="DeleteCar">Delete Car</a></li>
+
+            <li><a href="ViewBooking">View Bookings</a></li>
+
+            <li> <a href="ViewMonthly">View Monthly Report</a></li>
+
+            <li><a href="ViewKeyCustomers">View Key Customers</a></li>
+
+            <li> <a href="AddSpecialOffer">Add Special Offer</a></li>
+
+            <li><a href="ViewSuggestion">ViewSuggestions</a></li>
+
+            <li> <a href="AddBanner">Add Banner</a></li>*@
+
+        </ul>
+    </div>
+  
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
